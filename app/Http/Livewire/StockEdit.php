@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\Mailsender;
 use App\Models\Inventory;
 use App\Models\Inventorychange;
 use App\Models\Product;
 use App\Models\Warehouse;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class StockEdit extends Component
@@ -38,18 +40,15 @@ class StockEdit extends Component
             $this->open = true;
             $this->inventory = $this->auxP;
             if ($this->inventory->status == 'reject') {
-                $this->inventory_aux= Inventorychange::where('inventory_id',$this->inventory->id )->first();
+                $this->inventory_aux = Inventorychange::where('inventory_id', $this->inventory->id)->first();
                 $this->inventory->product_id =  $this->inventory_aux->product_id;
                 $this->inventory->warehouse_id =  $this->inventory_aux->warehouse_id;
                 $this->inventory->stock =  $this->inventory_aux->stock;
-            }else{
+            } else {
                 $this->inventory->status = 'editing';
                 $this->inventory->locked_by = auth()->user()->id;
                 $this->inventory->save();
             }
-
-
-           
         }
 
         $this->emit('render-stock');
@@ -69,6 +68,13 @@ class StockEdit extends Component
         $this->inventory = $this->auxP;
         $this->inventory->status = 'edited';
         $this->inventory->save();
+        $mensaje = [
+            'product_name' => $this->inventory->product->product_name,
+            'editor' => auth()->user()->name,
+            'modification_date' => now(),
+        ];
+
+        Mail::to('Teamleader@gmail.com', 'Teamleader2@gmail.com')->send(new Mailsender($mensaje));
         $this->emit('render-stock');
     }
 

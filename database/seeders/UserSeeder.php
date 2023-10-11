@@ -13,41 +13,40 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User:: create([
-            "name"=>'Teamleader',
+        User::create([
+            "name" => 'Teamleader',
             'email' => 'Teamleader@gmail.com',
             'password' => bcrypt('123456789')
         ])->assignRole('Teamleader');
 
-        User:: create([
-            "name"=>'Editor',
+        User::create([
+            "name" => 'Editor',
             'email' => 'Editor@gmail.com',
             'password' => bcrypt('123456789')
         ])->assignRole('Editor');
 
-        User:: create([
-            "name"=>'Viewer',
+        User::create([
+            "name" => 'Viewer',
             'email' => 'Viewer@gmail.com',
             'password' => bcrypt('123456789')
         ])->assignRole('Viewer');
 
-        User:: create([
-            "name"=>'Teamleader',
+        User::create([
+            "name" => 'Teamleader2',
             'email' => 'Teamleader2@gmail.com',
             'password' => bcrypt('123456789')
         ])->assignRole('Teamleader');
 
-        User:: create([
-            "name"=>'Editor',
+        User::create([
+            "name" => 'Editor2',
             'email' => 'Editor2@gmail.com',
             'password' => bcrypt('123456789')
         ])->assignRole('Editor');
 
-        User:: create([
-            "name"=>'Viewer',
+        User::create([
+            "name" => 'Viewer2',
             'email' => 'Viewer2@gmail.com',
             'password' => bcrypt('123456789')
         ])->assignRole('Viewer');
-       
     }
 }

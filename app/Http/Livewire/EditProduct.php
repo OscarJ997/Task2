@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\Mailsender;
 use App\Models\Product;
 use App\Models\Productchange;
 use App\Models\ProductGroup;
 use App\Models\Vendor;
 use App\Models\VendorShop;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class EditProduct extends Component
@@ -36,7 +38,6 @@ class EditProduct extends Component
         $this->groups = ProductGroup::all();
         $this->product = $product;
         $this->auxP = $product;
-        
     }
     public function save()
     {
@@ -57,8 +58,15 @@ class EditProduct extends Component
         $this->product = $this->auxP;
         $this->product->status = 'edited';
         $this->product->save();
-        
-       
+
+        $mensaje = [
+            'product_name' => $this->product->product_name,
+            'editor' => auth()->user()->name,
+            'modification_date' => now(),
+        ];
+
+        Mail::to('Teamleader@gmail.com', 'Teamleader2@gmail.com')->send(new Mailsender($mensaje));
+
         $this->emit('render-product');
     }
 
@@ -77,14 +85,13 @@ class EditProduct extends Component
                 $this->product->product_description = $this->product_aux->product_description;
                 $this->product->sku = $this->product_aux->sku;
                 $this->product->product_group_id = $this->product_aux->product_group_id;
-            }else{
+            } else {
                 $this->product->status = 'editing';
                 $this->product->locked_by = auth()->user()->id;
                 $this->product->save();
             }
-           
         };
-       
+
         $this->emit('render-product');
     }
 

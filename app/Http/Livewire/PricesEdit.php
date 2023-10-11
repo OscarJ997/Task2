@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\Mailsender;
 use App\Models\Price;
 use App\Models\Priceschange;
 use App\Models\Product;
 use App\Models\VendorShop;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class PricesEdit extends Component
@@ -46,6 +48,13 @@ class PricesEdit extends Component
         $this->prices = $this->auxP;
         $this->prices->status = 'edited';
         $this->prices->save();
+        $mensaje = [
+            'product_name' => $this->prices->product->product_name,
+            'editor' => auth()->user()->name,
+            'modification_date' => now(),
+        ];
+
+        Mail::to('Teamleader@gmail.com', 'Teamleader2@gmail.com')->send(new Mailsender($mensaje));
         $this->emit('render-price');
     }
 
@@ -61,12 +70,11 @@ class PricesEdit extends Component
                 $this->prices->product_id = $this->price_aux->product_id;
                 $this->prices->sale_price = $this->price_aux->sale_price;
                 $this->prices->shop_id = $this->price_aux->shop_id;
-            }else{
+            } else {
                 $this->prices->status = 'editing';
                 $this->prices->locked_by = auth()->user()->id;
                 $this->prices->save();
             }
-           
         }
 
         $this->emit('render-price');

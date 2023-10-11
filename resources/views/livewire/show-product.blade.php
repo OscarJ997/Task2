@@ -8,7 +8,6 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Produc Name</th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Product Description</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">SKU</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Vendor</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Shop</th>
@@ -26,7 +25,6 @@
                                 <div class="font-medium text-gray-700">{{ $product->product_name }}</div>
                             </div>
                         </th>
-                        <td class="px-6 py-4">{{ $product->product_description }}</td>
                         <td class="px-6 py-4">{{ $product->sku }}</td>
                         <td class="px-6 py-4">{{ $product->vendor->name }}</td>
                         <td class="px-6 py-4">{{ $product->shop->shop_name }}</td>
@@ -40,14 +38,13 @@
                                 </span>
                             </td>
                         @elseif($product->status == 'reject')
-                        <td class="px-6 py-4">
-                            <span
+                            <td class="px-6 py-4">
+                                <span
                                     class="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs font-semibold text-red-600">
                                     <span class="h-1.5 w-1.5 rounded-full bg-danger-600"></span>
                                     rejected
                                 </span>
-                        </td>
-
+                            </td>
                         @elseif($product->status == 'editing')
                             @if ($product->locked_by == auth()->user()->id)
                                 <td class="px-6 py-4">
