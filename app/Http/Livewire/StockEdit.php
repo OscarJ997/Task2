@@ -74,7 +74,7 @@ class StockEdit extends Component
             'modification_date' => now(),
         ];
 
-        Mail::to('Teamleader@gmail.com', 'Teamleader2@gmail.com')->send(new Mailsender($mensaje));
+        Mail::to(auth()->user()->email)->send(new Mailsender($mensaje));
         $this->emit('render-stock');
     }
 

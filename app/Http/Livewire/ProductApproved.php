@@ -63,7 +63,7 @@ class ProductApproved extends Component
             'modification_date' => now(),
         ];
 
-        Mail::to('Teamleader@gmail.com', 'Teamleader2@gmail.com')->send(new MailsenderApprove($mensaje));
+        Mail::to(auth()->user()->email)->send(new MailsenderApprove($mensaje));
         $this->emit('render-product');
     }
 
@@ -80,7 +80,7 @@ class ProductApproved extends Component
             'modification_date' => now(),
         ];
 
-        Mail::to('Teamleader@gmail.com', 'Teamleader2@gmail.com')->send(new MailsenderApprove($mensaje));
+        Mail::to(auth()->user()->email)->send(new MailsenderApprove($mensaje));
         $this->emit('render-product');
     }
 

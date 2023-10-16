@@ -53,7 +53,7 @@ class PriceApproved extends Component
             'modification_date' => now(),
         ];
 
-        Mail::to('Teamleader@gmail.com', 'Teamleader2@gmail.com')->send(new MailsenderApprove($mensaje));
+        Mail::to(auth()->user()->email)->send(new MailsenderApprove($mensaje));
         $this->emit('render-price');
     }
 
@@ -70,7 +70,7 @@ class PriceApproved extends Component
             'modification_date' => now(),
         ];
 
-        Mail::to('Teamleader@gmail.com', 'Teamleader2@gmail.com')->send(new MailsenderApprove($mensaje));
+        Mail::to(auth()->user()->email)->send(new MailsenderApprove($mensaje));
         $this->emit('render-price');
     }
 
