@@ -4,22 +4,22 @@
 
 
 
-        <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
-            <thead class="bg-gray-50">
+        <table class="w-full border-collapse  bg-white text-left text-sm text-gray-500">
+            <thead class="bg-neutral-800 text-white dark:border-neutral-500 dark:bg-neutral-900">
                 <tr>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Produc Name</th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">SKU</th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Vendor</th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Shop</th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Product Group</th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Status</th>
+                    <th scope="col" class="px-6 py-4 font-light ">Produc Name</th>
+                    <th scope="col" class="px-6 py-4 font-light ">SKU</th>
+                    <th scope="col" class="px-6 py-4 font-light ">Vendor</th>
+                    <th scope="col" class="px-6 py-4 font-light ">Shop</th>
+                    <th scope="col" class="px-6 py-4 font-light 0">Product Group</th>
+                    <th scope="col" class="px-6 py-4 font-light ">Status</th>
                     {{-- <th scope="col" class="px-6 py-4 font-medium text-gray-900">Prices</th> --}}
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Actions</th>
+                    <th scope="col" class="px-6 py-4 font-medium ">Actions</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 border-t border-gray-100">
                 @foreach ($products as $product)
-                    <tr class="hover:bg-gray-50">
+                    <tr class="border-b bg-neutral-100 dark:border-neutral-500 dark:bg-neutral-700">
                         <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
                             <div class="text-sm">
                                 <div class="font-medium text-gray-700">{{ $product->product_name }}</div>
